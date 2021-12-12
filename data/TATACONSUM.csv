@@ -1,4 +1,4 @@
-Date ,series ,OPEN ,HIGH ,LOW ,PREV. CLOSE ,ltp ,close ,vwap ,52W H ,52W L ,VOLUME ,VALUE ,No of trades 
+date,series,open,high,low,prev_close,ltp,close,vwap,52wh,52wl,volume,value,no_of_trades
 09-Dec-2021,EQ,773.0,779.05,766.05,772.15,778.1,777.5,772.82,889.0,551.0,935828,"723,222,885.75",38433
 08-Dec-2021,EQ,758.6,773.65,758.6,760.7,770.9,772.15,765.55,889.0,551.0,1002435,"767,410,197.60",49340
 07-Dec-2021,EQ,758.35,765.5,744.0,747.6,761.0,760.7,755.61,889.0,551.0,1741795,"1,316,119,772.30",64039

@@ -24,6 +24,12 @@ def get_data(company, from_date, to_date):
 
 os.chdir('..\data')
 
+cols = {'Date ': 'date', 'series ': 'series', 'OPEN ': 'open', 'HIGH ': 'high', 
+                           'LOW ': 'low', 'PREV. CLOSE ': 'prev_close', 'ltp ': 'ltp', 'close ': 'close', 
+                           'vwap ': 'vwap', '52W H ': '52wh', '52W L ': '52wl', 'VOLUME ': 'volume', 'VALUE ': 'value', 
+                           'No of trades ': 'no_of_trades'}
+
 for stock_symbol in nifty_50_list:
     company_df = get_data(stock_symbol,from_date='06-12-2021',to_date='09-12-2021')
+    company_df = company_df.rename(columns=cols)
     company_df.to_csv(stock_symbol+'.csv',index=False)
