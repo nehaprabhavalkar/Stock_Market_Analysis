@@ -4,7 +4,7 @@ from csv import writer
 from initialised_data import get_data
 from utils import nifty_50_list
 
-current_date = date(2021,12,10) # datetime.today() 
+current_date = datetime.today() 
 previous_date = current_date - timedelta(3)
 
 current_date = current_date.strftime("%d-%m-%Y")
