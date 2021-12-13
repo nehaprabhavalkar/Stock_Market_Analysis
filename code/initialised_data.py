@@ -5,6 +5,10 @@ from  datetime import datetime , timedelta
 import bs4
 import os
 from utils import nifty_50_list
+import json
+
+with open('config.json') as f:
+  config_data = json.load(f)
 
 session = requests.session()
 
@@ -22,6 +26,9 @@ def get_data(company, from_date, to_date):
     company_df = pd.read_csv(StringIO(webdata.text[3:]))
     return company_df
 
+from_date = config_data['from_date']
+to_date = config_data['to_date']
+
 os.chdir('..\data')
 
 cols = {'Date ': 'date', 'series ': 'series', 'OPEN ': 'open', 'HIGH ': 'high', 
@@ -30,6 +37,6 @@ cols = {'Date ': 'date', 'series ': 'series', 'OPEN ': 'open', 'HIGH ': 'high',
                            'No of trades ': 'no_of_trades'}
 
 for stock_symbol in nifty_50_list:
-    company_df = get_data(stock_symbol,from_date='06-12-2021',to_date='09-12-2021')
+    company_df = get_data(stock_symbol, from_date, to_date)
     company_df = company_df.rename(columns=cols)
     company_df.to_csv(stock_symbol+'.csv',index=False)
