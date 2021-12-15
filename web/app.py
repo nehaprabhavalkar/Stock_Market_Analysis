@@ -42,7 +42,9 @@ def index():
        sector = Sector.query.filter_by(id=form.sector.data).first()
        stock = Stock.query.filter_by(id=form.stock.data).first()
        path = 'C:/Users/DELL/Stock_Market_Analysis/data/' + stock.name + '.csv'
+       #print("Path",path)
        df = pd.read_csv(path)
+       #print(df.head())
        fig = px.line(df, x='date', y='open')
        graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
        return render_template('results.html', graphJSON=graphJSON, stock=stock.name)
@@ -59,6 +61,7 @@ def stockbysector(get_stock):
         stock_obj['name'] = s.name
         stock_array.append(stock_obj)
     return jsonify({'stocksector' : stock_array})
+
   
 if __name__ == '__main__':
     app.run(debug=True)
