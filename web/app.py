@@ -6,7 +6,8 @@ import pandas as pd
 import json
 import plotly
 import plotly.express as px
- 
+import os 
+
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -14,7 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 app.config['SECRET_KEY'] = '123'
  
 db = SQLAlchemy(app) 
- 
+
 class Sector(db.Model):
     __tablename__ = 'sectors'
   
@@ -40,10 +41,13 @@ def index():
     if request.method == 'POST':
        sector = Sector.query.filter_by(id=form.sector.data).first()
        stock = Stock.query.filter_by(id=form.stock.data).first()
-       df = pd.read_csv(stock.name+'.csv')
+       path = 'C:/Users/DELL/Stock_Market_Analysis/data/' + stock.name + '.csv'
+       #print("Path",path)
+       df = pd.read_csv(path)
+       #print(df.head())
        fig = px.line(df, x='date', y='open')
        graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-       return render_template('results.html', graphJSON=graphJSON)
+       return render_template('results.html', graphJSON=graphJSON, stock=stock.name)
        #return '<h1>Sector : {}, Stock: {}</h1>'.format(sector.name, stock.name)
     return render_template('index.html', form=form)
  
@@ -57,6 +61,7 @@ def stockbysector(get_stock):
         stock_obj['name'] = s.name
         stock_array.append(stock_obj)
     return jsonify({'stocksector' : stock_array})
+
   
 if __name__ == '__main__':
     app.run(debug=True)

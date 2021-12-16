@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
+        <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script> 
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <link rel="stylesheet" href = "{{ url_for('static', filename='css/style.css') }}">
     </head>
     <body>
         <div class="header">
             <h2>
-                Plotly Chart Demo
+                Graph for {{stock}}
             </h2>
         </div>
-        <div id="chart" class="chart">
-        </div>
     </body>
-        <script type="text/javascript">
-            var graphs = {{ graphJSON|safe }};
-            Plotly.plot('chart', graphs, {});        
+    
+    <div class="chart" id="bargraph">
+        <script>
+            var graphs = {{graphJSON | safe}};
+            Plotly.plot('bargraph',graphs,{});
         </script>
+    </div>     
+    <form method="POST">
+    <div class="center1">
+        
+            
+                <input type="button" class="button" value="5Day">
+           
+        </div>
+            <div class="center2"> 
+                
+                    <input type="button" class="button" value="1Month">
+            
+            </div>
+            <div class="center3"> 
+                
+                    <input type="button" class="button" value="6Month">
+               
+            </div>
+            <div class="center4"> 
+               
+                    <input type="button" class="button" value="1Year">
+               
+            </div>
+        </form>
+</script>
+
 </html>
