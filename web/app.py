@@ -50,7 +50,7 @@ def index():
        return render_template('results.html', graphJSON=graphJSON, stock=stock.name)
        #return '<h1>Sector : {}, Stock: {}</h1>'.format(sector.name, stock.name)
     return render_template('index.html', form=form)
- 
+
 @app.route('/stock/<get_stock>')
 def stockbysector(get_stock):
     stock = Stock.query.filter_by(sector_id=get_stock).all()

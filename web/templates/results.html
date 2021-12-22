@@ -3,7 +3,52 @@
     <head>
         <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script> 
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <link rel="stylesheet" href = "{{ url_for('static', filename='css/style.css') }}">
+        <style>
+                .center1 {
+                margin: 0;
+                position: absolute;
+                top: 85%;
+                left: 20%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                }
+                .center2 {
+                margin: 0;
+                position: absolute;
+                top: 85%;
+                left: 40%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                }
+                .center3 {
+                margin: 0;
+                position: absolute;
+                top: 85%;
+                left: 60%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                }
+                .center4 {
+                margin: 0;
+                position: absolute;
+                top: 85%;
+                left: 80%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                }
+                .anu {
+                background-color: #c9e916;
+                border: none;
+                color: black;
+                padding: 7px 15px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 15px;
+                margin: 4px 2px;
+                cursor: pointer;
+                }
+            </style>
     </head>
     <body>
         <div class="header">
@@ -19,29 +64,35 @@
             Plotly.plot('bargraph',graphs,{});
         </script>
     </div>     
-    <form method="POST">
     <div class="center1">
         
-            
-                <input type="button" class="button" value="5Day">
+        <button class="anu" id="5Day" onclick="display()">5Day</button>
            
         </div>
+ 
             <div class="center2"> 
                 
-                    <input type="button" class="button" value="1Month">
+                <button class="anu" id="1Month" onclick="display()">1Month</button>
             
             </div>
             <div class="center3"> 
                 
-                    <input type="button" class="button" value="6Month">
+                <button class="anu" id="6Month" onclick="display()">6Month</button>
                
             </div>
             <div class="center4"> 
                
-                    <input type="button" class="button" value="1Year">
+                <button class="anu" id="1Year" onclick="display()">1Year</button>
                
             </div>
-        </form>
+                
+</script>
+
+<script>
+     function display() {
+                  document.getElementById("bargraph").innerHTML = "Hello World";
+                }
+          
 </script>
 
 </html>
