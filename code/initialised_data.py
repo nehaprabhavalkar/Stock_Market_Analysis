@@ -7,8 +7,8 @@ import os
 from utils import nifty_50_list
 import json
 
-with open('config.json') as f:
-  config_data = json.load(f)
+with open('config.json') as file:
+  config_data = json.load(file)
 
 session = requests.session()
 

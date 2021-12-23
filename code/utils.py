@@ -49,3 +49,5 @@ nifty_50_list = [
 'ULTRACEMCO',
 'UPL',
 'WIPRO' ] 
+
+
