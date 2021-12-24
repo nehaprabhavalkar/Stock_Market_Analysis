@@ -1,4 +1,6 @@
 {
-    "from_date": "06-12-2021",
-    "to_date"  : "09-12-2021"
+    "from_date" :  "06-12-2021",
+    "to_date" : "09-12-2021",
+    "holiday_script_path" : "../code/holiday_check.py",
+    "current_data_script_path" : "../code/current.py"
 }

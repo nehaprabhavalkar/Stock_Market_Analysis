@@ -15,11 +15,19 @@ with open('config.json') as file:
 
 holiday_script_path = config_data['holiday_script_path']
 
-execute_script_cmd = f"python {holiday_script_path}"
+execute_holiday_script_cmd = f"python {holiday_script_path}"
+
+current_data_script_path = config_data['current_data_script_path']
+
+execute_current_script_cmd = f"python {current_data_script_path}"
 
 def validate_day():
-    # code for holiday check
-    pass
+  output = subprocess.call(execute_holiday_script_cmd)
+  if output != 0:
+    return "invalid_day"
+  else:
+    return "run_script"
+
 
 default_args = {
 
@@ -35,13 +43,13 @@ default_args = {
 
 }
 
-dag_obj = DAG('get_daily_data_dag', max_active_runs=1, schedule_interval=None, catchup=False, default_args=default_args)
+dag_obj = DAG('get_daily_data_dag', max_active_runs=1, schedule_interval="0 3 * * 2-6", catchup=False, default_args=default_args)
 
 start_task = DummyOperator(task_id="start", dag=dag_obj)
 
 validate_day_task = BranchPythonOperator(task_id="validate_day", python_callable=validate_day, dag=dag_obj)
 
-run_script = BashOperator(task_id="run_script", bash_command=execute_script_cmd, dag=dag_obj)
+run_script = BashOperator(task_id="run_script", bash_command=execute_current_script_cmd, dag=dag_obj)
 
 invalid_day = DummyOperator(task_id="invalid_day", dag=dag_obj)
 
