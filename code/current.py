@@ -2,7 +2,7 @@ import os
 from  datetime import timedelta , date , datetime
 from csv import writer 
 from initialised_data import get_data
-from utils import nifty_50_list
+from utils import get_stock_list
 
 current_date = date(2021,12,10) #datetime.today() 
 previous_date = current_date - timedelta(3)
@@ -11,6 +11,8 @@ current_date = current_date.strftime("%d-%m-%Y")
 previous_date = previous_date.strftime("%d-%m-%Y")
 
 os.chdir('..\data')
+
+nifty_50_list = get_stock_list()
 
 for stock_symbol in nifty_50_list:
     company_df = get_data(stock_symbol,from_date=previous_date,to_date=current_date)

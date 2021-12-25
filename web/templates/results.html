@@ -3,52 +3,7 @@
     <head>
         <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script> 
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <style>
-                .center1 {
-                margin: 0;
-                position: absolute;
-                top: 85%;
-                left: 20%;
-                -ms-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
-                }
-                .center2 {
-                margin: 0;
-                position: absolute;
-                top: 85%;
-                left: 40%;
-                -ms-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
-                }
-                .center3 {
-                margin: 0;
-                position: absolute;
-                top: 85%;
-                left: 60%;
-                -ms-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
-                }
-                .center4 {
-                margin: 0;
-                position: absolute;
-                top: 85%;
-                left: 80%;
-                -ms-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
-                }
-                .anu {
-                background-color: #c9e916;
-                border: none;
-                color: black;
-                padding: 7px 15px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 15px;
-                margin: 4px 2px;
-                cursor: pointer;
-                }
-            </style>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
     </head>
     <body>
         <div class="header">
@@ -66,23 +21,23 @@
     </div>     
     <div class="center1">
         
-        <button class="anu" id="5Day" onclick="display()">5Day</button>
+        <button class="bt" id="5Day" onclick="display()">5Day</button>
            
         </div>
  
             <div class="center2"> 
                 
-                <button class="anu" id="1Month" onclick="display()">1Month</button>
+                <button class="bt" id="1Month" onclick="display()">1Month</button>
             
             </div>
             <div class="center3"> 
                 
-                <button class="anu" id="6Month" onclick="display()">6Month</button>
+                <button class="bt" id="6Month" onclick="display()">6Month</button>
                
             </div>
             <div class="center4"> 
                
-                <button class="anu" id="1Year" onclick="display()">1Year</button>
+                <button class="bt" id="1Year" onclick="display1()">1Year</button>
                
             </div>
                 
@@ -90,7 +45,16 @@
 
 <script>
      function display() {
+                  var graphs = {{graphJSON | safe}};
+                  //document.getElementById("bargraph").innerHTML = graphs;
+                  Plotly.plot('bargraph',graphs,{}); 
+                }
+
+
+    function display1() {
+                  
                   document.getElementById("bargraph").innerHTML = "Hello World";
+                 
                 }
           
 </script>

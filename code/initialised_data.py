@@ -4,7 +4,7 @@ import pandas as pd
 from  datetime import datetime , timedelta
 import bs4
 import os
-from utils import nifty_50_list
+from utils import get_stock_list
 import json
 
 with open('config.json') as file:
@@ -28,6 +28,8 @@ def get_data(company, from_date, to_date):
 
 from_date = config_data['from_date']
 to_date = config_data['to_date']
+
+nifty_50_list = get_stock_list()
 
 os.chdir('..\data')
 

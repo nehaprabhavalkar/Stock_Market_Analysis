@@ -3,10 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from wtforms import SelectField
 from flask_wtf import FlaskForm
 import pandas as pd
-import json
 import plotly
 import plotly.express as px
-import os 
+import json
+import os
 
 app = Flask(__name__)
 
@@ -41,25 +41,28 @@ def index():
     if request.method == 'POST':
        sector = Sector.query.filter_by(id=form.sector.data).first()
        stock = Stock.query.filter_by(id=form.stock.data).first()
-       path = 'C:/Users/DELL/Stock_Market_Analysis/data/' + stock.name + '.csv'
-       #print("Path",path)
+
+       path = '../data/' + stock.name + '.csv'
        df = pd.read_csv(path)
-       #print(df.head())
        fig = px.line(df, x='date', y='open')
        graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
        return render_template('results.html', graphJSON=graphJSON, stock=stock.name)
        #return '<h1>Sector : {}, Stock: {}</h1>'.format(sector.name, stock.name)
+
     return render_template('index.html', form=form)
 
 @app.route('/stock/<get_stock>')
 def stockbysector(get_stock):
     stock = Stock.query.filter_by(sector_id=get_stock).all()
     stock_array = []
+
     for s in stock:
         stock_obj = {}
         stock_obj['id'] = s.id
         stock_obj['name'] = s.name
         stock_array.append(stock_obj)
+
     return jsonify({'stocksector' : stock_array})
 
   
