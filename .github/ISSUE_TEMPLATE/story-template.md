@@ -13,4 +13,4 @@ assignees: ''
 
 ### Description:
 
-### Estimated efforts (person hours):
+### Estimated efforts:
