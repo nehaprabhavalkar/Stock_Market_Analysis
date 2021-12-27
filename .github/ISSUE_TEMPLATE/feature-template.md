@@ -7,8 +7,6 @@ assignees: ''
 
 ---
 
-### Feature:
-
 ### Date:
 
 ### Description:

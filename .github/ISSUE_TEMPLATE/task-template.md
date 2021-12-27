@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-### Task:
+### Story:
 
 ### Date:
 
