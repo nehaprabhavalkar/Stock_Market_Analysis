@@ -7,7 +7,7 @@ import plotly
 import plotly.express as px
 import json
 import os
-from ..code.utils import plot_graph
+
 
 app = Flask(__name__)
 
@@ -45,7 +45,7 @@ def index():
 
        path = '../data/' + stock.name + '.csv'
        df = pd.read_csv(path)
-       fig = plot_graph(df) #px.line(df, x='date', y='open')
+       fig = px.line(df, x='date', y='close') #utils.plot_graph(df) 
        graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
        return render_template('results.html', graphJSON=graphJSON, stock=stock.name)

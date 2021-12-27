@@ -15,7 +15,7 @@ def convert_to_string(df):
     return df
 
 def plot_graph(df):
-    fig = px.line(df, x='date', y='open')
+    fig = px.line(df, x='date', y='close')
     return fig
 
 def get_previous_trading_day(day_delta):

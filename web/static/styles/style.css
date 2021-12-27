@@ -42,3 +42,5 @@
     margin: 4px 2px;
     cursor: pointer;
     }
+    .bt:hover{background-color:orange;}
+    .bt:focus{background-color:red;}
