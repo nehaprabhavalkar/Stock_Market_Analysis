@@ -32,5 +32,9 @@ for stock_symbol in nifty_50_list:
     company_df = pd.read_csv(stock_symbol+'.csv')
     company_df = convert_to_date(company_df)
     company_df = company_df.sort_values(by=['date'])
-    company_df.to_csv(stock_symbol+'.csv',index=False)
+    if stock_symbol =="M%26M":
+        company_df.to_csv('M&M'+'.csv',index=False)
+        os.remove('M%26M.csv')
+    else:
+        company_df.to_csv(stock_symbol+'.csv',index=False)
 

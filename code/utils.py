@@ -56,7 +56,7 @@ def get_stock_list():
                         'JSWSTEEL',
                         'KOTAKBANK',
                         'LT',
-                        'M&M',
+                        'M%26M',
                         'MARUTI',
                         'NESTLEIND',
                         'NTPC',
