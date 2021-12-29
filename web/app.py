@@ -8,7 +8,6 @@ import plotly.express as px
 import json
 import os
 
-
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'

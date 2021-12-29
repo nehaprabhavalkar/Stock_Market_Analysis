@@ -24,6 +24,10 @@ def get_previous_trading_day(day_delta):
     previous_date = previous_date - shift
     return previous_date
 
+def filter_dataframe(previous_date, df):
+    df = df[(df['date'] > previous_date) & (df['date'] <= current_date)]
+    return df
+
 def get_stock_list():
     nifty_50_list = [ 
                         'ADANIPORTS',
