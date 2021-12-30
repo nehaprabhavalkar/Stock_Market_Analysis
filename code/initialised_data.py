@@ -31,7 +31,7 @@ to_date = config_data['to_date']
 
 nifty_50_list = get_stock_list()
 
-os.chdir('..\data')
+#os.chdir('..\data')
 
 cols = {'Date ': 'date', 'series ': 'series', 'OPEN ': 'open', 'HIGH ': 'high', 
                            'LOW ': 'low', 'PREV. CLOSE ': 'prev_close', 'ltp ': 'ltp', 'close ': 'close', 
@@ -41,4 +41,4 @@ cols = {'Date ': 'date', 'series ': 'series', 'OPEN ': 'open', 'HIGH ': 'high',
 for stock_symbol in nifty_50_list:
     company_df = get_data(stock_symbol, from_date, to_date)
     company_df = company_df.rename(columns=cols)
-    company_df.to_csv(stock_symbol+'.csv',index=False)
+    company_df.to_csv('../data/'+stock_symbol+'.csv',index=False)
