@@ -1,12 +1,13 @@
 from datetime import datetime, date
 import pandas as pd
-from utils import get_stock_list
+from utils import get_stock_dict
 
 # row count check
 # null values check
 # check if data is populated for today's date
 
-nifty_50_list = get_stock_list()
+nifty_50_dict = get_stock_dict()
+nifty_50_list = list(nifty_50_dict.keys())
 
 current_date = date(2021,12,24) #datetime.today()
 str_current_date = current_date.strftime('%Y-%m-%d')

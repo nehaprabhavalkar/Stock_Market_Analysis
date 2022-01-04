@@ -5,7 +5,7 @@ import pandas as pd
 import warnings
 warnings.filterwarnings('ignore')
 from initialised_data import get_data
-from utils import get_stock_list, convert_to_date
+from utils import get_stock_dict, convert_to_date
 
 current_date = date(2021,12,29) #datetime.today() 
 previous_date = current_date - timedelta(3)
@@ -15,7 +15,8 @@ previous_date = previous_date.strftime("%d-%m-%Y")
 
 #os.chdir('..\data')
 
-nifty_50_list = get_stock_list()
+nifty_50_dict = get_stock_dict()
+nifty_50_list = list(nifty_50_dict.keys())
 
 for stock_symbol in nifty_50_list:
     company_df = get_data(stock_symbol,from_date=previous_date,to_date=current_date)

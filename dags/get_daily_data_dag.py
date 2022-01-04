@@ -52,7 +52,7 @@ default_args = {
 
 }
 
-dag_obj = DAG('get_daily_data_dag', max_active_runs=1, schedule_interval="0 3 * * 2-6", catchup=False, default_args=default_args)
+dag_obj = DAG('get_daily_data_dag', max_active_runs=1, schedule_interval="0 8 * * 2-6", catchup=False, default_args=default_args)
 
 start_task = DummyOperator(task_id="start", dag=dag_obj)
 
