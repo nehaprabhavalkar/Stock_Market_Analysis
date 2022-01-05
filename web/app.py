@@ -67,6 +67,6 @@ def stockbysector(get_stock):
 
     return jsonify({'stocksector' : stock_array})
 
-  
+
 if __name__ == '__main__':
     app.run(debug=True)
