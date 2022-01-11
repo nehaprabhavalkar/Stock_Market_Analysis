@@ -7,6 +7,7 @@ import plotly
 import plotly.express as px
 import json
 import os
+from graph_utils import plot_graph, get_stock_dict
 
 app = Flask(__name__)
 
@@ -43,10 +44,12 @@ def index():
     if request.method == 'POST':
        sector = Sector.query.filter_by(id=form.sector.data).first()
        stock = Stock.query.filter_by(id=form.stock.data).first()
+
        stock_name = nifty_50_dict[stock.name] 
+       
        path = '../data/' + stock_name+ '.csv'
        df = pd.read_csv(path)
-       fig = px.line(df, x='date', y='close')  #plot_graph(df) 
+       fig = plot_graph(df) #px.line(df, x='date', y='close')  #plot_graph(df) 
        graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
        return render_template('results.html', graphJSON=graphJSON, stock=stock.name)

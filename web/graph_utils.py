@@ -1,17 +1,23 @@
-from datetime import datetime, date, timedelta
 import plotly
 import plotly.express as px
+from datetime import datetime, date, timedelta
 
-def convert_to_date(df):
-    for i in range(0,len(df)):
-        df['date'][i] = datetime.strptime(df['date'][i], '%d-%b-%Y').date()
+current_date = datetime.today()
+
+def plot_graph(df):
+    fig = px.line(df, x='date', y='close')
+    return fig
+
+def get_previous_trading_day(day_delta):
+    previous_date = current_date - timedelta(day_delta)
+    shift = timedelta(max(1,(previous_date.weekday() + 6) % 7 - 3))
+    previous_date = previous_date - shift
+    return previous_date
+
+def filter_dataframe(previous_date, df):
+    df = df[(df['date'] > previous_date) & (df['date'] <= current_date)]
     return df
 
-def convert_to_string(df):
-    for i in range(0,len(df)):
-        df['date'][i] = df['date'][i].strftime('%d-%b-%Y')
-    return df
- 
 def get_stock_dict():
     nifty_50_dict = {
                         'ADANIPORTS' : 'ADANIPORTS' ,
@@ -67,5 +73,3 @@ def get_stock_dict():
                     }
 
     return nifty_50_dict
-
-

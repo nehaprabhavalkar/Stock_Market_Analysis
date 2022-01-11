@@ -1,4 +1,4 @@
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 import pandas as pd
 from utils import get_stock_dict
 
@@ -9,7 +9,8 @@ from utils import get_stock_dict
 nifty_50_dict = get_stock_dict()
 nifty_50_list = list(nifty_50_dict.keys())
 
-current_date = date(2021,12,24) #datetime.today()
+today_date = date(2021,12,24) #datetime.today()
+current_date = today_date - timedelta(1)
 str_current_date = current_date.strftime('%Y-%m-%d')
 
 def check_row_count(nifty_50_list):
@@ -22,7 +23,7 @@ def check_row_count(nifty_50_list):
         else:
             raise Exception("Row count check has failed")
 
-def check_null_vales(nifty_50_list):
+def check_null_values(nifty_50_list):
     for stock in nifty_50_list:
         df = pd.read_csv('../data/'+stock+'.csv') 
 
@@ -46,5 +47,5 @@ def check_data_for_current_date(nifty_50_list):
 
 if __name__=='__main__':
     check_row_count(nifty_50_list)
-    check_null_vales(nifty_50_list)
+    check_null_values(nifty_50_list)
     check_data_for_current_date(nifty_50_list)

@@ -30,7 +30,7 @@ from_date = config_data['from_date']
 to_date = config_data['to_date']
 
 nifty_50_dict = get_stock_dict()
-nifty_50_list = list(nifty_50_dict.keys())
+nifty_50_list = list(nifty_50_dict.values())
 
 #os.chdir('..\data')
 
