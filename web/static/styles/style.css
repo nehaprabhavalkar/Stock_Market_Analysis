@@ -42,5 +42,16 @@
     margin: 4px 2px;
     cursor: pointer;
     }
-    .bt:hover{background-color:orange;}
-    .bt:focus{background-color:red;}
+    .bt-highlighted {
+        background-color: #e99f16;
+        border: none;
+        color: black;
+        padding: 7px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 15px;
+        margin: 4px 2px;
+        cursor: pointer;
+
+    }

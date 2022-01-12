@@ -57,6 +57,25 @@ def index():
 
     return render_template('index.html', form=form)
 
+@app.route('/update', methods = ['POST'])
+def update_graph():
+    if request.method == 'POST':
+        json_data = request.json
+        a = json_data
+        print(a)
+        #form = Form()
+        #stock = Stock.query.filter_by(id=form.stock.data).first()
+
+        #stock_name = nifty_50_dict[stock.name] 
+       
+        path = '../data/' + 'ASIANPAINT' + '.csv'
+
+        df = pd.read_csv(path)
+        fig = plot_graph(df) #px.line(df, x='date', y='close')  #plot_graph(df) 
+        graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
+        return render_template('results.html', graphJSON=graphJSON)
+
 @app.route('/stock/<get_stock>')
 def stockbysector(get_stock):
     stock = Stock.query.filter_by(sector_id=get_stock).all()

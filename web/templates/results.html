@@ -22,23 +22,23 @@
     </div>     
     <div class="center1">
         
-        <button class="bt" id="5Day" data-bs-toggle="button" autocomplete="off" onclick="display()">5Day</button>
+        <button class="bt" id="5Day" data-bs-toggle="button" autocomplete="off" onclick="display();highlight_button(this.id) ">5Day</button>
            
         </div>
  
             <div class="center2"> 
                 
-                <button class="bt" id="1Month" data-bs-toggle="button" autocomplete="off" onclick="display()">1Month</button>
+                <button class="bt" id="1Month" data-bs-toggle="button" autocomplete="off" onclick="display();highlight_button(this.id)">1Month</button>
             
             </div>
             <div class="center3"> 
                 
-                <button class="bt" id="6Month" data-bs-toggle="button" autocomplete="off" onclick="display()">6Month</button>
+                <button class="bt" id="6Month" data-bs-toggle="button" autocomplete="off" onclick="display();highlight_button(this.id)">6Month</button>
                
             </div>
             <div class="center4"> 
                
-                <button class="bt" id="1Year" data-bs-toggle="button" autocomplete="off" onclick="display1()">1Year</button>
+                <button class="bt" id="1Year" data-bs-toggle="button" autocomplete="off" onclick="display();highlight_button(this.id)">1Year</button>
                
             </div>
                 
@@ -46,15 +46,60 @@
 
 <script>
      function display() {
-                  var graphs = {{graphJSON | safe}};
-                  //document.getElementById("bargraph").innerHTML = graphs;
-                  Plotly.plot('bargraph',graphs,{}); 
+
+        var req = new XMLHttpRequest();
+        var url = "/";
+        var link = "5Day";
+        var send = {link : link};
+
+        req.open("POST", url, true);
+
+        req.setRequestHeader("Content-type", "application/json");
+
+        req.onreadystatechange = function(){
+            if(req.readyState == 4){
+                if(req.status == 200){
+
+                    var graphs = {{graphJSON | safe}};
+                    Plotly.plot('bargraph',graphs,{}); 
+
                 }
+            }
+        }
+        
+        req.send(JSON.stringify(send));
+ 
+}
 
 
-    function display1() {
+    function highlight_button(clicked_id) {
                   
-                  document.getElementById("bargraph").innerHTML = "Hello World";
+                  var btn1 = document.getElementById("5Day");
+                  var btn2 = document.getElementById("1Month");
+                  var btn3 = document.getElementById("6Month");
+                  var btn4 = document.getElementById("1Year");
+
+                  btn1.className = "bt";
+                  btn2.className = "bt";
+                  btn3.className = "bt";
+                  btn4.className = "bt";
+
+                  if(clicked_id == "5Day")
+                  {
+                    btn1.className = "bt-highlighted";
+                  }
+                  else if(clicked_id == "1Month")
+                  {
+                    btn2.className = "bt-highlighted";
+                  }
+                  else if(clicked_id == "6Month")
+                  {
+                    btn3.className = "bt-highlighted";
+                  }
+                  else if(clicked_id == "1Year")
+                  {
+                    btn4.className = "bt-highlighted";
+                  }
                  
                 }
           
