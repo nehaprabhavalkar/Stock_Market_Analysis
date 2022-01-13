@@ -14,8 +14,6 @@ previous_date = current_date - timedelta(3)
 current_date = current_date.strftime("%d-%m-%Y")
 previous_date = previous_date.strftime("%d-%m-%Y")
 
-#os.chdir('..\data')
-
 nifty_50_dict = get_stock_dict()
 nifty_50_list = list(nifty_50_dict.values())
 

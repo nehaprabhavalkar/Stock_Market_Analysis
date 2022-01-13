@@ -2,6 +2,16 @@ from datetime import datetime, date, timedelta
 import plotly
 import plotly.express as px
 
+
+def get_cols():
+    cols = {'Date ': 'date', 'series ': 'series', 'OPEN ': 'open', 'HIGH ': 'high', 
+            'LOW ': 'low', 'PREV. CLOSE ': 'prev_close', 'ltp ': 'ltp', 'close ': 'close', 
+            'vwap ': 'vwap', '52W H ': '52wh', '52W L ': '52wl', 'VOLUME ': 'volume', 
+            'VALUE ': 'value', 'No of trades ': 'no_of_trades'}
+
+    return cols 
+
+
 def convert_to_date(df):
     for i in range(0,len(df)):
         df['date'][i] = datetime.strptime(df['date'][i], '%d-%b-%Y').date()

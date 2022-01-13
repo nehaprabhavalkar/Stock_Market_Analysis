@@ -4,7 +4,7 @@ import pandas as pd
 from  datetime import datetime , timedelta
 import bs4
 import os
-from utils import get_stock_dict
+from utils import get_stock_dict, get_cols
 import json
 
 with open('config.json') as file:
@@ -32,12 +32,7 @@ to_date = config_data['to_date']
 nifty_50_dict = get_stock_dict()
 nifty_50_list = list(nifty_50_dict.values())
 
-#os.chdir('..\data')
-
-cols = {'Date ': 'date', 'series ': 'series', 'OPEN ': 'open', 'HIGH ': 'high', 
-                           'LOW ': 'low', 'PREV. CLOSE ': 'prev_close', 'ltp ': 'ltp', 'close ': 'close', 
-                           'vwap ': 'vwap', '52W H ': '52wh', '52W L ': '52wl', 'VOLUME ': 'volume', 'VALUE ': 'value', 
-                           'No of trades ': 'no_of_trades'}
+cols = get_cols()
 
 for stock_symbol in nifty_50_list:
     company_df = get_data(stock_symbol, from_date, to_date)

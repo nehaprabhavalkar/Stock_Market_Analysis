@@ -63,10 +63,6 @@ def update_graph():
         json_data = request.json
         a = json_data
         print(a)
-        #form = Form()
-        #stock = Stock.query.filter_by(id=form.stock.data).first()
-
-        #stock_name = nifty_50_dict[stock.name] 
        
         path = '../data/' + 'ASIANPAINT' + '.csv'
 
