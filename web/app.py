@@ -61,9 +61,10 @@ def index():
 def update_graph():
     if request.method == 'POST':
         json_data = request.json
-        a = json_data
-        print(a)
-       
+
+        id = json_data['id']
+        stock_name = json_data['name']
+
         path = '../data/' + 'ASIANPAINT' + '.csv'
 
         df = pd.read_csv(path)

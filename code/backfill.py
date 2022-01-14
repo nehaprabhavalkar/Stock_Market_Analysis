@@ -1,6 +1,6 @@
 import pandas as pd 
 from initialised_data import get_data
-from utils import get_stock_dict, get_cols
+from utils import get_stock_dict, get_cols, convert_to_date
 from datetime import datetime
 
 nifty_50_dict = get_stock_dict()
@@ -28,11 +28,10 @@ for stock_symbol in nifty_50_list:
     df6.to_csv(stock_symbol+'.csv',index=False)
     
 
-def convert_to_date(stock_symbol):
+def transform_data(stock_symbol):
     df = pd.read_csv(stock_symbol+'.csv')
     
-    for i in range(0,len(df)):
-        df['date'][i] = datetime.strptime(df['date'][i], '%d-%b-%Y').date()
+    df = convert_to_date(df)
         
     df = df.sort_values('date')
     
@@ -40,4 +39,4 @@ def convert_to_date(stock_symbol):
     
 
 for stock_symbol in nifty_50_list:
-    convert_to_date(stock_symbol)
+    transform_data(stock_symbol)

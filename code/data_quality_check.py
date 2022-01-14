@@ -38,7 +38,7 @@ def check_data_for_current_date(nifty_50_list):
         df = pd.read_csv('../data/'+stock+'.csv') 
         df = df[ df['date'] == str_current_date ]
 
-        if len(df) > 0:
+        if len(df) > 0: 
             print("Data for date {} is populated".format(current_date))
 
         else:
