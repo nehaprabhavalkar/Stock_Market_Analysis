@@ -1,3 +1,15 @@
+'''
+----------------------------------------------
+Project: Stock Market Analysis
+File: backfill.py
+Description:
+    
+    loads data for the time period 1st Jan 2015
+    to 31st Dec 2021 into the data folder
+    
+-----------------------------------------------
+'''
+
 import pandas as pd 
 from initialised_data import get_data
 from utils import get_stock_dict, get_cols, convert_to_date
@@ -8,7 +20,8 @@ nifty_50_list = list(nifty_50_dict.values())
 
 cols = get_cols()
 
-for stock_symbol in nifty_50_list:
+
+def consolidate_data(stock_symbol):
     df = get_data(stock_symbol, from_date='01-01-2015', to_date='31-12-2016')
     df = df.rename(columns=cols)
     
@@ -25,18 +38,20 @@ for stock_symbol in nifty_50_list:
     df5 = df4.append(df2, ignore_index=True)
     df6 = df5.append(df3, ignore_index=True)
     
-    df6.to_csv(stock_symbol+'.csv',index=False)
+    df6.to_csv('../data/'+stock_symbol+'.csv',index=False)
     
+
 
 def transform_data(stock_symbol):
-    df = pd.read_csv(stock_symbol+'.csv')
+    df = pd.read_csv('../data/'+stock_symbol+'.csv')
     
     df = convert_to_date(df)
-        
     df = df.sort_values('date')
     
-    df.to_csv(stock_symbol+'.csv',index=False)
+    df.to_csv('../data/'+stock_symbol+'.csv',index=False)
     
 
-for stock_symbol in nifty_50_list:
-    transform_data(stock_symbol)
+if __name__=='__main__':
+    for stock_symbol in nifty_50_list:
+        consolidate_data(stock_symbol)
+        transform_data(stock_symbol)

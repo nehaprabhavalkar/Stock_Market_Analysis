@@ -1,3 +1,16 @@
+'''
+----------------------------------------------
+Project: Stock Market Analysis
+File: initialsed_data.py
+Description:
+
+    extracts data from NSE website based on dates
+    and stock symbol provided and stores into
+    data folder
+    
+-----------------------------------------------
+'''
+
 import requests
 from io import StringIO
 import pandas as pd

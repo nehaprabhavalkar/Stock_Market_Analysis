@@ -1,3 +1,15 @@
+'''
+----------------------------------------------
+Project: Stock Market Analysis
+File: utils.py
+Description:
+    
+    helper functions used frequently in other
+    scripts
+    
+-----------------------------------------------
+'''
+
 from datetime import datetime, date, timedelta
 import plotly
 import plotly.express as px

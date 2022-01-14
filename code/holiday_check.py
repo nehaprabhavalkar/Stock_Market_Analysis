@@ -1,11 +1,24 @@
-from datetime import datetime, date 
+'''
+----------------------------------------------
+Project: Stock Market Analysis
+File: holiday_check.py
+Description:
+    
+    checks whether current date is a sunday,
+    monday or a bank holiday
+    
+-----------------------------------------------
+'''
+
+from datetime import datetime, date, timedelta
 import sqlite3
 import json 
 
 with open('config.json') as file:
   config_data = json.load(file)
 
-current_date = datetime.today()
+today_date = datetime.today()
+current_date = today_date - timedelta(1)
 day = current_date.strftime("%A")
 str_current_date = current_date.strftime("%Y-%m-%d")
 

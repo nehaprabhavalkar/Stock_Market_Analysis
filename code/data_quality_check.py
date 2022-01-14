@@ -1,10 +1,20 @@
+'''
+----------------------------------------------
+Project: Stock Market Analysis
+File: data_quality_check.py
+Description:
+    
+    performs the following checks:-
+    - row count check
+    - null values check
+    - check if data is populated for current date
+    
+-----------------------------------------------
+'''
+
 from datetime import datetime, date, timedelta
 import pandas as pd
 from utils import get_stock_dict
-
-# row count check
-# null values check
-# check if data is populated for today's date
 
 nifty_50_dict = get_stock_dict()
 nifty_50_list = list(nifty_50_dict.keys())

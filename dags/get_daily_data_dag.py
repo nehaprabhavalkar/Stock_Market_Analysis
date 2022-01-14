@@ -1,3 +1,16 @@
+'''
+----------------------------------------------
+Project: Stock Market Analysis
+File: get_daily_data_dag.py
+Description:
+    
+    DAG which runs from Tuesday to Saturday
+    at 8 AM IST in order to extracts data from
+    NSE website
+    
+-----------------------------------------------
+'''
+
 from airflow.models.dag import dag
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
@@ -52,7 +65,7 @@ default_args = {
 
 }
 
-dag_obj = DAG('get_daily_data_dag', max_active_runs=1, schedule_interval="0 8 * * 2-6", catchup=False, default_args=default_args)
+dag_obj = DAG('get_daily_data_dag', max_active_runs=1, schedule_interval="0 3 * * 2-6", catchup=False, default_args=default_args)
 
 start_task = DummyOperator(task_id="start", dag=dag_obj)
 
