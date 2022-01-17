@@ -20,8 +20,7 @@ import os
 from utils import get_stock_dict, get_cols
 import json
 
-with open('config.json') as file:
-  config_data = json.load(file)
+DATA_PATH = '../data/'
 
 session = requests.session()
 
@@ -36,18 +35,26 @@ def get_data(company, from_date, to_date):
     session.get("https://www.nseindia.com/api/historical/cm/equity?symbol="+company, headers=head)
     url = "https://www.nseindia.com/api/historical/cm/equity?symbol=" + company + "&series=[%22EQ%22]&from=" + from_date + "&to=" + to_date + "&csv=true"
     webdata = session.get(url=url, headers=head)
-    company_df = pd.read_csv(StringIO(webdata.text[3:]))
-    return company_df
+    try:
+        company_df = pd.read_csv(StringIO(webdata.text[3:]))
+        return company_df
+    except: 
+        raise Exception("Cannot fetch data from NSE")
 
-from_date = config_data['from_date']
-to_date = config_data['to_date']
+if __name__=='__main__':
 
-nifty_50_dict = get_stock_dict()
-nifty_50_list = list(nifty_50_dict.values())
+    with open('config.json') as file:
+        config_data = json.load(file)
 
-cols = get_cols()
+    from_date = config_data['from_date']
+    to_date = config_data['to_date']
 
-for stock_symbol in nifty_50_list:
-    company_df = get_data(stock_symbol, from_date, to_date)
-    company_df = company_df.rename(columns=cols)
-    company_df.to_csv('../data/'+stock_symbol+'.csv',index=False)
+    nifty_50_dict = get_stock_dict()
+    nifty_50_list = list(nifty_50_dict.values())
+
+    cols = get_cols()
+
+    for stock_symbol in nifty_50_list:
+        company_df = get_data(stock_symbol, from_date, to_date)
+        company_df = company_df.rename(columns=cols)
+        company_df.to_csv(DATA_PATH + stock_symbol + '.csv', index=False)

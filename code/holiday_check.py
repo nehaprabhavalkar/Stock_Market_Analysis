@@ -12,17 +12,14 @@ Description:
 
 from datetime import datetime, date, timedelta
 import sqlite3
-import json 
+import json
 
-with open('config.json') as file:
-  config_data = json.load(file)
 
-today_date = datetime.today()
-current_date = today_date - timedelta(1)
-day = current_date.strftime("%A")
-str_current_date = current_date.strftime("%Y-%m-%d")
+TODAY_DATE = datetime.today()
+CURRENT_DATE = TODAY_DATE - timedelta(1)
+DAY = CURRENT_DATE.strftime("%A")
+STR_CURRENT_DATE = CURRENT_DATE.strftime("%Y-%m-%d")
 
-holiday_tbl_name = config_data['holiday_tbl_name']
 
 def is_bank_holiday(holiday_tbl_name, current_date):
     conn = sqlite3.connect('../web/test.db')
@@ -43,9 +40,18 @@ def is_bank_holiday(holiday_tbl_name, current_date):
 
     return flag 
 
-is_bank_holiday = is_bank_holiday(holiday_tbl_name, str_current_date)
 
-if day.lower() == 'monday' or day.lower() == 'sunday' or is_bank_holiday:
-    raise Exception("DAG cannot be scheduled today")
-else:
-   print("DAG can be scheduled today")
+if __name__=='__main__':
+
+    with open('config.json') as file:
+        config_data = json.load(file)
+
+    holiday_tbl_name = config_data['holiday_tbl_name']
+
+    is_bank_holiday = is_bank_holiday(holiday_tbl_name, STR_CURRENT_DATE)
+
+    if DAY.lower() == 'monday' or DAY.lower() == 'sunday' or is_bank_holiday:
+        raise Exception("DAG cannot be scheduled today")
+
+    else:
+        print("DAG can be scheduled today")

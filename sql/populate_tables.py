@@ -14,14 +14,6 @@ from datetime import datetime, date
 import sqlite3
 import json
 
-with open('../code/config.json') as file:
-  config_data = json.load(file)
-
-
-holiday_tbl_name = config_data['holiday_tbl_name']
-sector_table_name = config_data['sector_tbl_name']
-stock_tbl_name = config_data['stock_tbl_name']
-
 conn = sqlite3.connect('../web/test.db')
 cursor = conn.cursor()
 
@@ -44,6 +36,14 @@ def sql_insert(table_name):
     cursor.execute('COMMIT;')
 
 if __name__ == '__main__':
+
+    with open('../code/config.json') as file:
+        config_data = json.load(file)
+
+    holiday_tbl_name = config_data['holiday_tbl_name']
+    sector_table_name = config_data['sector_tbl_name']
+    stock_tbl_name = config_data['stock_tbl_name']
+
     sql_create(holiday_tbl_name)
     sql_create(stock_tbl_name)
     sql_create(sector_table_name)
