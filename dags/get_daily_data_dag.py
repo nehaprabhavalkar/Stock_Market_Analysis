@@ -11,7 +11,6 @@ Description:
 -----------------------------------------------
 '''
 
-from airflow.models.dag import dag
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator, BranchPythonOperator
@@ -41,16 +40,26 @@ execute_dq_script_cmd = f"python {dq_script_path}"
 
 def validate_day():
   output = subprocess.call(execute_holiday_script_cmd)
+
   if output != 0:
+    print("Invalid day to run DAG")
     return "invalid_day"
+
   else:
+    print("current_data script is scheduled")
     return "run_script"
 
 
 def data_quality_check():
    output = subprocess.call(execute_dq_script_cmd)
 
+   if output != 0:
+     raise Exception("Data Quality Check has failed")
 
+   else:
+     print("Data Quality Check has been successful")
+
+    
 default_args = {
 
     'owner': "Neha",
