@@ -17,7 +17,8 @@ from datetime import datetime, date, timedelta
 current_date = datetime.today()
 
 def plot_graph(df):
-    fig = px.line(df, x='date', y='close')
+    fig = px.line(df, x='date', y='close',width=800, height=400)
+    fig.update_layout(template='plotly_dark')
     return fig
 
 def get_previous_trading_day(day_delta):

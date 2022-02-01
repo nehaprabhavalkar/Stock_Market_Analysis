@@ -96,6 +96,13 @@ def stockbysector(get_stock):
 
     return jsonify({'stocksector' : stock_array})
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/compare')
+def compare():
+    return render_template('compare.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

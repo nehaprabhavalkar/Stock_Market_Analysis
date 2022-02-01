@@ -1,39 +1,59 @@
-    .center1 {
+    .container {
+        position: absolute;
+        left: 100px;
+        top: 100px;
+          
+    }
+    .chart {
+        position: absolute;
+        left: 300px;
+        top: 110px;
+    }
+
+    h4.headertext {
+    text-align: center;
+    }
+
+   .center1 {
     margin: 0;
     position: absolute;
-    top: 85%;
+    top: 90%;
     left: 20%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     }
+
     .center2 {
     margin: 0;
     position: absolute;
-    top: 85%;
+    top: 90%;
     left: 40%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     }
+
     .center3 {
     margin: 0;
     position: absolute;
-    top: 85%;
+    top: 90%;
     left: 60%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     }
+
     .center4 {
     margin: 0;
     position: absolute;
-    top: 85%;
+    top: 90%;
     left: 80%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     }
+
     .bt {
-    background-color: #c9e916;
+    background-color: #f6fff5;
     border: none;
-    color: black;
+    color: rgb(31, 28, 28);
     padding: 7px 15px;
     text-align: center;
     text-decoration: none;
@@ -42,10 +62,11 @@
     margin: 4px 2px;
     cursor: pointer;
     }
+
     .bt-highlighted {
-        background-color: #e99f16;
+        background-color: #1f77b4;
         border: none;
-        color: black;
+        color: rgb(31, 28, 28);
         padding: 7px 15px;
         text-align: center;
         text-decoration: none;
