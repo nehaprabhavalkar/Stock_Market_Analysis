@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+# Stock_Market_Analysis
+=======
 # Stock Market Analysis
 A tool to analyse NSE Stock Data for Nifty 50 stocks
 
@@ -92,3 +95,4 @@ purpose of plotting visualizations
 
 ## License
 MIT
+>>>>>>> 4de4bf954462b21a78e7950727c662538d43c24c
